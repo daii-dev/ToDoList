@@ -1,5 +1,17 @@
 const Task = require('../models/task.model');
 
+function crearFiltroMongo(filtro) {
+  if (filtro === 'done') {
+    return { done: true };
+  }
+
+  if (filtro === 'pending') {
+    return { done: false };
+  }
+
+  return {};
+}
+
 async function contarTareas() {
   const [total, hechas, pendientes] = await Promise.all([
     Task.countDocuments(),
@@ -14,9 +26,10 @@ async function contarTareas() {
   };
 }
 
-async function listarTareas() {
+async function listarTareas(filtro = 'all') {
+  const filtroMongo = crearFiltroMongo(filtro);
   const [tareas, estadisticas] = await Promise.all([
-    Task.find().sort({ createdAt: -1 }),
+    Task.find(filtroMongo).sort({ createdAt: -1 }),
     contarTareas()
   ]);
 

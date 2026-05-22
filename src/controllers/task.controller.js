@@ -9,12 +9,14 @@ function crearErrorNoEncontrada() {
 }
 
 exports.listarTareas = asyncHandler(async function (req, res) {
-  const resultado = await servicioTareas.listarTareas();
+  const filtro = req.query.filter || 'all';
+  const resultado = await servicioTareas.listarTareas(filtro);
 
   return sendSuccess(res, {
     data: resultado.tareas,
     metadata: {
       count: resultado.tareas.length,
+      filter: filtro,
       stats: resultado.estadisticas
     },
     links: {
