@@ -6,7 +6,8 @@ const router = express.Router();
 router.get('/tasks', taskController.listarTareas);
 router.get('/tasks/:id', taskController.obtenerTarea);
 router.post('/tasks', taskController.crearTarea);
-router.patch('/tasks/:id', taskController.actualizarTarea);
+router.put('/tasks/:id', taskController.actualizarTareaCompleta);
+router.patch('/tasks/:id', taskController.cambiarEstadoTarea);
 router.delete('/tasks/:id', taskController.eliminarTarea);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 const Task = require('../models/task.model');
 
-function crearFiltroMongo(filtro) {
+function crearFiltroTareas(filtro) {
   if (filtro === 'done') {
     return { done: true };
   }
@@ -19,23 +19,19 @@ async function contarTareas() {
     Task.countDocuments({ done: false })
   ]);
 
-  return {
-    total,
-    done: hechas,
-    pending: pendientes
-  };
+  return {total, done: hechas, pending: pendientes};
 }
 
 async function listarTareas(filtro = 'all') {
-  const filtroMongo = crearFiltroMongo(filtro);
+  const filtroTareas = crearFiltroTareas(filtro);
   const [tareas, estadisticas] = await Promise.all([
-    Task.find(filtroMongo).sort({ createdAt: -1 }),
-    contarTareas()
+    Task.find(filtroTareas).sort({ createdAt: -1 }),
+    contarTareas(),
   ]);
 
   return {
     tareas,
-    estadisticas
+    estadisticas,
   };
 }
 
@@ -51,31 +47,23 @@ async function crearTarea(datos) {
   });
 }
 
-function obtenerDatosPermitidos(cuerpo) {
-  const datos = {};
-
-  if (cuerpo.title !== undefined) {
-    datos.title = cuerpo.title;
-  }
-
-  if (cuerpo.date !== undefined) {
-    datos.date = cuerpo.date;
-  }
-
-  if (cuerpo.done !== undefined) {
-    datos.done = cuerpo.done;
-  }
-
-  return datos;
+async function actualizarTareaCompleta(id, datos) {
+  return Task.findByIdAndUpdate(
+    id,
+    {title: datos.title, 
+      date: datos.date || ''},
+    {returnDocument: 'after', 
+      runValidators: true}
+  );
 }
 
-async function actualizarTarea(id, cuerpo) {
-  const datosPermitidos = obtenerDatosPermitidos(cuerpo);
-
-  return Task.findByIdAndUpdate(id, datosPermitidos, {
-    returnDocument: 'after',
-    runValidators: true
-  });
+async function cambiarEstadoTarea(id, cuerpo) {
+  return Task.findByIdAndUpdate(
+    id,
+    {done: cuerpo.done},
+    {returnDocument: 'after', 
+      runValidators: true}
+  );
 }
 
 async function eliminarTarea(id) {
@@ -86,6 +74,7 @@ module.exports = {
   listarTareas,
   buscarTareaPorId,
   crearTarea,
-  actualizarTarea,
+  actualizarTareaCompleta,
+  cambiarEstadoTarea,
   eliminarTarea
 };
