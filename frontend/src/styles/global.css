@@ -412,7 +412,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: var(--accent-dim);
 }
 
-.toast {
+.mensaje-aviso {
   position: fixed;
   bottom: 24px;
   left: 50%;
@@ -429,6 +429,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   white-space: nowrap;
 }
 
-.toast.show {
+.mensaje-aviso.show {
   transform: translateX(-50%) translateY(0);
 }

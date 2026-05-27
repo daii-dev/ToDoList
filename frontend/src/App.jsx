@@ -1,10 +1,14 @@
-import { useRef, useState } from 'react';
-import { TaskForm } from './components/TaskForm';
-import { TaskStats } from './components/TaskStats';
-import { TaskFilters } from './components/TaskFilters';
-import { TaskList } from './components/TaskList';
+import {
+  useRef,
+  useState,
+} from 'react';
+
 import { EditTaskModal } from './components/EditTaskModal';
-import { Toast } from './components/Toast';
+import { MensajeAviso } from './components/MensajeAviso';
+import { TaskFilters } from './components/TaskFilters';
+import { TaskForm } from './components/TaskForm';
+import { TaskList } from './components/TaskList';
+import { TaskStats } from './components/TaskStats';
 import { useTasks } from './hooks/useTasks';
 
 function App() {
@@ -21,18 +25,18 @@ function App() {
   } = useTasks();
 
   const [tareaEditando, setTareaEditando] = useState(null);
-  const [mensajeToast, setMensajeToast] = useState('');
-  const timeoutToastRef = useRef(null);
+  const [mensajeAviso, setMensajeAviso] = useState('');
+  const temporizadorAvisoRef = useRef(null);
 
   function mostrarMensaje(texto) {
-    setMensajeToast(texto);
+    setMensajeAviso(texto);
 
-    if (timeoutToastRef.current) {
-      clearTimeout(timeoutToastRef.current);
+    if (temporizadorAvisoRef.current) {
+      clearTimeout(temporizadorAvisoRef.current);
     }
 
-    timeoutToastRef.current = setTimeout(function () {
-      setMensajeToast('');
+    temporizadorAvisoRef.current = setTimeout(function () {
+      setMensajeAviso('');
     }, 2200);
   }
 
@@ -106,7 +110,7 @@ function App() {
         onGuardar={manejarGuardarEdicion}
       />
 
-      <Toast mensaje={mensajeToast} />
+      <MensajeAviso mensaje={mensajeAviso} />
     </>
   );
 }
