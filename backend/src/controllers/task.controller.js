@@ -103,7 +103,7 @@ exports.actualizarTareaCompleta = asyncHandler(async function (req, res) {
     throw crearErrorSolicitudInvalida('El titulo es obligatorio para actualizar toda la tarea');
   }
 
-  const tarea = await servicioTareas.actualizarTarea(req.params.id, req.body);
+  const tarea = await servicioTareas.actualizarTareaCompleta(req.params.id, req.body);
 
   if (!tarea) {
     throw crearErrorNoEncontrada();
