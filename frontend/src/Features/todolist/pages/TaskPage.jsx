@@ -6,7 +6,7 @@ import {
 import { ArrowLeft } from 'lucide-react';
 
 import { EditTaskModal } from '../components/EditTaskModal';
-import { MensajeAviso } from '../components/MensajeAviso';
+import { MensajeAviso } from '../../../components/MensajeAviso';
 import { TaskFilters } from '../components/TaskFilters';
 import { TaskForm } from '../components/TaskForm';
 import { TaskList } from '../components/TaskList';

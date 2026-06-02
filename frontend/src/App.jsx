@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { HomePage } from './pages/HomePage';
-import { TaskPage } from './pages/TaskPage';
+import { TaskPage } from './features/todolist/pages/TaskPage';
 import { DrivePage } from './features/drive/pages/DrivePage';
 
 function App() {
