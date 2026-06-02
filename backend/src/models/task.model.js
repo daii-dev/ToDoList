@@ -6,7 +6,7 @@ const esquemaTarea = new mongoose.Schema(
       type: String,
       required: [true, 'El título de la tarea es obligatorio'],
       trim: true,
-      maxlength: [20, 'El título no puede superar los 20 caracteres']
+      maxlength: [50, 'El título no puede superar los 50 caracteres']
     },
 
     date: {

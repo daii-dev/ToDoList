@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const taskRoutes = require('./routes/task.routes');
+const fileRoutes = require('./routes/file.routes');
 const { sendSuccess, sendError } = require('./utils/apiResponse');
 
 const app = express();
@@ -36,6 +37,7 @@ app.get('/', function (req, res) {
 });
 
 app.use('/api', taskRoutes);
+app.use('/api', fileRoutes);
 
 app.use(function (req, res) {
   return sendError(req, res, {
@@ -50,6 +52,18 @@ app.use(function (req, res) {
 
 app.use(function (err, req, res, next) {
   console.error(err);
+
+  if (err.name === 'MulterError') {
+    return sendError(req, res, {
+      status: 400,
+      title: 'Error al subir archivo',
+      detail: err.message,
+      links: {
+        collection: {href: '/api/files', method: 'GET'},
+        init: {href: '/api/files/init', method: 'GET'}
+      }
+    });
+  }
 
   if (err.name === 'ValidationError') {
     const mensajes = Object.values(err.errors).map(function (error) {
