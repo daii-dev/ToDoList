@@ -502,3 +502,103 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   max-width: 500px;
   margin-bottom: 0;
 }
+.drive-selected-file {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  margin: -4px 0 12px;
+  word-break: break-word;
+}
+
+.drive-file-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.drive-file-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  animation: slideIn 0.2s ease;
+}
+
+.drive-file-icon {
+  width: 42px;
+  height: 42px;
+  min-width: 42px;
+  border-radius: 12px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drive-file-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.drive-file-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  word-break: break-word;
+  margin-bottom: 4px;
+}
+
+.drive-file-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+
+.drive-file-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.drive-file-actions a {
+  text-decoration: none;
+}
+
+.form-group input[type="file"] {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  padding: 10px 14px;
+  outline: none;
+}
+
+.form-group input[type="file"]:focus {
+  border-color: var(--accent);
+}
+
+.form-group input[type="file"].input-error {
+  border-color: var(--danger);
+}
+
+@media (max-width: 520px) {
+  .drive-file-card {
+    flex-direction: column;
+  }
+
+  .drive-file-actions {
+    width: 100%;
+  }
+
+  .drive-file-actions .btn-edit,
+  .drive-file-actions .btn-delete {
+    width: 100%;
+  }
+}

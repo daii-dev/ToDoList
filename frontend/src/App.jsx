@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import { HomePage } from './pages/HomePage';
 import { TaskPage } from './pages/TaskPage';
+import { DrivePage } from './features/drive/pages/DrivePage';
 
 function App() {
   const [servicioActual, setServicioActual] = useState('home');
@@ -10,17 +11,7 @@ function App() {
     return <TaskPage onVolver={() => setServicioActual('home')} />;
   }
   if (servicioActual === 'drive') {
-    return (
-      <main>
-        <button className="btn-back" type="button" onClick={() => setServicioActual('home')}>
-          Volver
-        </button>
-
-        <div className="add-form">
-          <h2>DRIVE</h2>
-        </div>
-      </main>
-    );
+    return <DrivePage onVolver={() => setServicioActual('home')} />;
   }
 
   return <HomePage onSeleccionarServicio={setServicioActual} />;
