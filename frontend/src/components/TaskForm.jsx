@@ -1,4 +1,8 @@
-import { useRef, useState } from 'react';
+import {
+  useRef,
+  useState,
+} from 'react';
+
 import { CirclePlus } from 'lucide-react';
 
 export function TaskForm({ onCrearTarea }) {
@@ -44,7 +48,7 @@ export function TaskForm({ onCrearTarea }) {
           type="text"
           id="task-title-input"
           placeholder="Añade la tarea..."
-          maxLength="20"
+          maxLength="50"
           value={titulo}
           className={tituloInvalido ? 'input-error' : ''}
           onChange={(evento) => setTitulo(evento.target.value)}

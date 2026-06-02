@@ -1,5 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import { Save, X } from 'lucide-react';
+import {
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
+import {
+  Save,
+  X,
+} from 'lucide-react';
 
 export function EditTaskModal({ tarea, abierto, onCerrar, onGuardar }) {
   const [titulo, setTitulo] = useState('');
@@ -73,7 +81,7 @@ export function EditTaskModal({ tarea, abierto, onCerrar, onGuardar }) {
             ref={inputTituloRef}
             type="text"
             id="edit-title"
-            maxLength="20"
+            maxLength="50"
             value={titulo}
             className={tituloInvalido ? 'input-error' : ''}
             onChange={(evento) => setTitulo(evento.target.value)}
