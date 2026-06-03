@@ -1,5 +1,5 @@
-const asyncHandler = require('../utils/asyncHandler');
-const { sendSuccess } = require('../utils/apiResponse');
+const asyncHandler = require('../../../utils/asyncHandler');
+const { sendSuccess } = require('../../../utils/apiResponse');
 const servicioArchivos = require('../services/file.service');
 const {
   crearLinksArchivo,
@@ -9,7 +9,7 @@ const {
 const {
   crearETag,
   clienteTieneLaMismaVersion
-} = require('../utils/cache');
+} = require('../../../utils/cache');
 
 function crearErrorArchivoNoEncontrado() {
   const error = new Error('El archivo no existe');

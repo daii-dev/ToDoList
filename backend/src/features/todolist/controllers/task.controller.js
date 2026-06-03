@@ -1,8 +1,8 @@
-const asyncHandler = require('../utils/asyncHandler');
-const { sendSuccess } = require('../utils/apiResponse');
+const asyncHandler = require('../../../utils/asyncHandler');
+const { sendSuccess } = require('../../../utils/apiResponse');
 const servicioTareas = require('../services/task.service');
 const {agregarLinksATarea, crearLinksTarea, crearLinksListado} = require('../utils/taskLinks');
-const {crearETag, clienteTieneLaMismaVersion} = require('../utils/cache');
+const {crearETag, clienteTieneLaMismaVersion} = require('../../../utils/cache');
 
 function crearErrorNoEncontrada() {
   const error = new Error('La tarea no existe');

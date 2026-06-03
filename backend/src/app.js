@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
-const taskRoutes = require('./routes/task.routes');
-const fileRoutes = require('./routes/file.routes');
+const taskRoutes = require('./features/todolist/routes/task.routes');
+const fileRoutes = require('./features/drive/routes/file.routes');
 const { sendSuccess, sendError } = require('./utils/apiResponse');
 
 const app = express();
