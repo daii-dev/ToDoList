@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# certifcados https locales
+backend/certs/*.pem
+!backend/certs/.gitkeep
