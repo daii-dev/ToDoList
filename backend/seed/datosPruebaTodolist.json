@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Comprar despensa",
+    "date": "2026-06-02",
+    "done": true
+  },
+  {
+    "title": "Regar orquidea",
+    "date": "2026-06-05",
+    "done": false
+  },
+  {
+    "title": "Leer ultimo capitulo de libro",
+    "date": "2026-06-09",
+    "done": true
+  },
+  {
+    "title": "Estudiar para Big Data",
+    "date": "2026-06-10",
+    "done": false
+  },
+  {
+    "title": "Terminar la documentacion",
+    "date": "2026-06-11",
+    "done": false
+  }
+]

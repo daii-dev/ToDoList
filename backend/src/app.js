@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(function (req, res, next) {
-  res.setHeader('X-App-Version', process.env.APP_VERSION || '1.0.0');
+  res.setHeader('Version-App', process.env.APP_VERSION || '1.0.0');
   next();
 });
 

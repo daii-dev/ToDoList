@@ -1,0 +1,20 @@
+[
+  {
+    "nombreOriginal": "prueba drive.txt",
+    "nombreVisible": "prueba drive.txt",
+    "tipoMime": "text/plain",
+    "contenido": "Archivo de prueba generado por el seed del servicio Drive."
+  },
+  {
+    "nombreOriginal": "colina Windows XP.jpg",
+    "nombreVisible": "colina Windows XP.jpg",
+    "tipoMime": "image/jpeg",
+    "rutaOrigen": "seed/archivos/colina Windows XP.jpg"
+  },
+  {
+    "nombreOriginal": "users_password_pending_2026-06-02.pdf",
+    "nombreVisible": "users_password_pending_2026-06-02.pdf",
+    "tipoMime": "application/pdf",
+    "rutaOrigen": "seed/archivos/users_password_pending_2026-06-02.pdf"
+  }
+]

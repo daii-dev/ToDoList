@@ -11,7 +11,7 @@ async function startServer() {
   await connectDB();
   const opcionesHttps = obtenerOpcionesHttps();
   https.createServer(opcionesHttps, app).listen(HTTPS_PORT, function () {
-    console.log(`Servidor ejecutándose en http://localhost:${HTTPS_PORT}`);
+    console.log(`Servidor HTTPS ejecutándose en https://localhost:${HTTPS_PORT}`);
   });
 }
 
