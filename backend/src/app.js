@@ -3,13 +3,15 @@ const morgan = require('morgan');
 const taskRoutes = require('./features/todolist/routes/task.routes');
 const fileRoutes = require('./features/drive/routes/file.routes');
 const { sendSuccess, sendError } = require('./utils/apiResponse');
-
+const passport = require('./config/passport');
+const authRoutes = require('./features/auth/routes/auth.routes');
 const app = express();
 
 app.disable('x-powered-by');
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(passport.initialize());
 
 app.use(function (req, res, next) {
   res.setHeader('Version-App', process.env.APP_VERSION || '1.0.0');
@@ -36,6 +38,7 @@ app.get('/', function (req, res) {
   });
 });
 
+app.use('/api', authRoutes);
 app.use('/api', taskRoutes);
 app.use('/api', fileRoutes);
 
