@@ -5,6 +5,7 @@ const fileRoutes = require('./features/drive/routes/file.routes');
 const { sendSuccess, sendError } = require('./utils/apiResponse');
 const passport = require('./config/passport');
 const authRoutes = require('./features/auth/routes/auth.routes');
+const protegerRuta = require('./middlewares/auth.middleware');
 const app = express();
 
 app.disable('x-powered-by');
@@ -39,8 +40,8 @@ app.get('/', function (req, res) {
 });
 
 app.use('/api', authRoutes);
-app.use('/api', taskRoutes);
-app.use('/api', fileRoutes);
+app.use('/api', protegerRuta,taskRoutes);
+app.use('/api', protegerRuta,fileRoutes);
 
 app.use(function (req, res) {
   return sendError(req, res, {
