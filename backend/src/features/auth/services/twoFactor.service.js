@@ -40,21 +40,21 @@ async function verificarCodigo2FA(loginId, codigo) {
   if (!desafio) {
     return {
       valido: false,
-      mensaje: 'El código no existe o ya expiró'
+      mensaje: 'El codigo no existe o ya expiró'
     };
   }
 
   if (desafio.usado) {
     return {
       valido: false,
-      mensaje: 'El código ya fue usado'
+      mensaje: 'El codigo ya fue usado'
     };
   }
 
   if (desafio.expiraEn < new Date()) {
     return {
       valido: false,
-      mensaje: 'El código ya expiró'
+      mensaje: 'El codigo ya expiró'
     };
   }
 
@@ -63,7 +63,7 @@ async function verificarCodigo2FA(loginId, codigo) {
   if (!codigoCorrecto) {
     return {
       valido: false,
-      mensaje: 'El código ingresado no es correcto'
+      mensaje: 'El codigo ingresado no es correcto'
     };
   }
 

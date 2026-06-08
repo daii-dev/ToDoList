@@ -16,7 +16,7 @@ export function TwoFactorPage({ desafio2FA, onVerificar, onCancelar }) {
     try {
       await onVerificar(codigo.trim());
     } catch (error) {
-      setMensajeError(error.message || 'Código incorrecto');
+      setMensajeError(error.message || 'Codigo incorrecto');
     } finally {
       setCargando(false);
     }

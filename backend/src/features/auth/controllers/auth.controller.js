@@ -45,7 +45,7 @@ async function crearRespuestaSegundoPaso(req, res, usuario) {
     metadata: {
       autenticado: false,
       pasoActual: 'verificar_codigo',
-      mensaje: 'Credenciales correctas. Ingresa el código de verificación.'
+      mensaje: 'Credenciales correctas. Ingresa el codigo de verificación.'
     },
     links: {
       verificarCodigo: {
@@ -153,7 +153,7 @@ exports.verificarSegundoPaso = asyncHandler(async function (req, res) {
     return sendError(req, res, {
       status: 404,
       title: 'Usuario no encontrado',
-      detail: 'No se encontró el usuario relacionado al código',
+      detail: 'No se encontró el usuario relacionado al codigo',
       links: {
         login: {
           href: '/api/auth/login',
