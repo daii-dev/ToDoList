@@ -1,13 +1,14 @@
 import {
   Download,
   File,
+  FileText,
   Image,
   Pencil,
   Trash2,
   Video,
-  FileText
 } from 'lucide-react';
-import { obtenerUrlDescarga } from '../services/fileService';
+
+import { descargarArchivo } from '../services/fileService';
 
 function formatearTamanio(bytes) {
   if (!bytes) return '0 B';
@@ -54,16 +55,14 @@ export function DriveFileCard({ archivo, onEditar, onEliminar }) {
       </div>
 
       <div className="drive-file-actions">
-        <a
+        <button
+          type="button"
           className="btn-edit"
-          href={obtenerUrlDescarga(archivo.id)}
-          target="_blank"
-          rel="noreferrer"
-          title="Descargar"
+          onClick={() => descargarArchivo(archivo)}
         >
           <Download size={14} />
           Descargar
-        </a>
+        </button>
 
         <button
           type="button"

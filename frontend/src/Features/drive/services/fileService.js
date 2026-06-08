@@ -1,12 +1,16 @@
+import { obtenerToken } from '../../auth/services/tokenService';
+
 const API_ARCHIVOS = '/api/files';
 
 async function pedirJson(url, opciones = {}) {
+  const token = obtenerToken();
   const respuesta = await fetch(url, {
     ...opciones,
     cache: 'no-store',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(opciones.headers || {})
     }
   });
@@ -24,9 +28,14 @@ async function pedirJson(url, opciones = {}) {
 }
 
 async function enviarArchivo(url, formData) {
+  const token = obtenerToken();
+
   const respuesta = await fetch(url, {
     method: 'POST',
-    body: formData
+    body: formData,
+    headers: {
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    }
   });
 
   const contenido = await respuesta.json().catch(function () {
@@ -74,4 +83,30 @@ export async function eliminarArchivo(id) {
 
 export function obtenerUrlDescarga(id) {
   return `${API_ARCHIVOS}/${id}/download`;
+}
+
+export async function descargarArchivo(archivo) {
+  const token = obtenerToken();
+
+  const respuesta = await fetch(`${API_ARCHIVOS}/${archivo.id}/download`, {
+    headers: {
+      ...(token ? { Authorization: `Bearer ${token}` } : {})
+    }
+  });
+
+  if (!respuesta.ok) {
+    throw new Error('No se pudo descargar el archivo');
+  }
+
+  const blob = await respuesta.blob();
+  const urlDescarga = window.URL.createObjectURL(blob);
+  const enlace = document.createElement('a');
+
+  enlace.href = urlDescarga;
+  enlace.download = archivo.nombreVisible;
+  document.body.appendChild(enlace);
+  enlace.click();
+  enlace.remove();
+
+  window.URL.revokeObjectURL(urlDescarga);
 }

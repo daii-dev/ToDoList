@@ -1,12 +1,16 @@
+import { obtenerToken } from '../../auth/services/tokenService';
+
 const API_TAREAS = '/api/tasks';
 
 async function pedirJson(url, opciones = {}) {
+  const token = obtenerToken();
   const respuesta = await fetch(url, {
     ...opciones,
     cache: 'no-store',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(opciones.headers || {})
     }
   });
