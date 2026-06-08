@@ -28,10 +28,24 @@ async function pedirJson(url, opciones = {}) {
   return contenido;
 }
 
+export async function registrarUsuario(datosRegistro) {
+  return pedirJson(`${API_AUTH}/register`, {
+    method: 'POST',
+    body: JSON.stringify(datosRegistro)
+  });
+}
+
 export async function iniciarSesion(datosLogin) {
   return pedirJson(`${API_AUTH}/login`, {
     method: 'POST',
     body: JSON.stringify(datosLogin)
+  });
+}
+
+export async function verificarCodigo2FA(datosCodigo) {
+  return pedirJson(`${API_AUTH}/verify-2fa`, {
+    method: 'POST',
+    body: JSON.stringify(datosCodigo)
   });
 }
 

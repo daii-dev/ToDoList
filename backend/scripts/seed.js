@@ -12,9 +12,6 @@ const tareasIniciales = require('../seed/datosPruebaTodolist.json');
 const archivosIniciales = require('../seed/datosPruebaDrive.json');
 
 const carpetaUploads = path.join(__dirname, '..', 'uploads');
-const bcrypt = require('bcryptjs');
-const User = require('../src/features/auth/models/user.model');
-const usuariosIniciales = require('../seed/datosPruebaUsuarios.json');
 
 async function crearCarpetaUploads() {
   await fs.mkdir(carpetaUploads, { recursive: true });
@@ -22,22 +19,9 @@ async function crearCarpetaUploads() {
 
 async function limpiarBaseDeDatos() {
   await Promise.all([
-    User.deleteMany(),
     Task.deleteMany(),
     File.deleteMany()
   ]);
-}
-
-async function cargarUsuarios() {
-  for (const usuario of usuariosIniciales) {
-    const passwordHash = await bcrypt.hash(usuario.password, 10);
-
-    await User.create({
-      nombre: usuario.nombre,
-      email: usuario.email,
-      passwordHash
-    });
-  }
 }
 
 async function cargarTareas() {
@@ -76,7 +60,6 @@ async function ejecutarSeed() {
     await connectDB();
 
     await limpiarBaseDeDatos();
-    await cargarUsuarios();
     await cargarTareas();
     await cargarArchivosDemo();
 

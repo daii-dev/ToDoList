@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/auth/register', authController.registrarUsuario);
 router.post('/auth/login', authController.iniciarSesion);
+router.post('/auth/verify-2fa', authController.verificarSegundoPaso);
 
 router.get(
   '/auth/me',

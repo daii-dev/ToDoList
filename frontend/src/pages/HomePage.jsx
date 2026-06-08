@@ -10,20 +10,10 @@ export function HomePage({ usuario, onLogout, onSeleccionarServicio }) {
       <div className="add-form home-card">
         <div className="home-header">
           <div>
-            <h2>MI SISTEMA</h2>
             <p className="home-description">
-              Bienvenido, {usuario?.nombre}. Selecciona un servicio.
+              Bienvenido {usuario?.nombre}, selecciona un servicio:
             </p>
           </div>
-
-          <button
-            type="button"
-            className="btn-logout"
-            onClick={onLogout}
-          >
-            <LogOut size={16} />
-            Salir
-          </button>
         </div>
         
         <div className="service-grid">
@@ -43,6 +33,14 @@ export function HomePage({ usuario, onLogout, onSeleccionarServicio }) {
           >
             <Cloud size={32} />
             <span>Drive</span>
+          </button>
+          <button
+            type="button"
+            className="btn-add"
+            onClick={onLogout}
+          >
+            <LogOut size={16} />
+            Salir
           </button>
         </div>
       </div>
